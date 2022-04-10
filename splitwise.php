@@ -1,5 +1,5 @@
 <?php
-	session_start();
+session_start();
 	date_default_timezone_set('Asia/Kolkata');
 	$server = "localhost";
 	$user = "root";
@@ -9,7 +9,7 @@
 	$conn = mysqli_connect($server, $user, $password, $dbname) or die();
 	mysqli_select_db($conn, $dbname);
 
-	if(isset($_POST['submit']) && $_SESSION['id'] > 0){
+	if(isset($_POST['submit'])){
 		$id = $_SESSION['id'];
 		$topic = date("d/m/Y");
 		$name = $_POST['name'];
@@ -30,10 +30,6 @@
 			$save = "INSERT INTO cal (id, topic, name, moneys) VALUES ('$id','$topic','".$name[$key]."','".$moneys[$key]."')";
 			$query = mysqli_query($conn,$save) or die(mysqli_error());
 		}
-	}
-	else{
-		$alert = "<script>alert('Please login first !!!!'); window.location.href='home.php';</script>";
-        echo $alert;
 	}
 
 ?>
@@ -74,7 +70,7 @@
 						<th>Name</th>
 						<th>Money To Pay</th>
 					</tr>
-					<?php 
+					<?php
 						$select = "Select * FROM cal where id = '".$_SESSION['id']."'ORDER BY topic DESC";
 						$result = mysqli_query($conn, $select);
 						while($row = mysqli_fetch_array($result)){ ?>
