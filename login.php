@@ -11,7 +11,7 @@ mysqli_select_db($conn, $dbname);
 if(isset($_POST['submit'])){
 
 	$email = $_POST['email'];
-	$pass = $_POST['pass'];
+	$pass = md5($_POST['pass']);
 
 	$sql = "select * from form where email = '".$email."'AND password = '".$pass."' limit 1";
 

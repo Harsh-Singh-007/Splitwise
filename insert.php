@@ -13,8 +13,8 @@ if(isset($_POST['register'])){
 		$name = $_POST['name'];
 		$email = $_POST['email'];
 		$numbers = $_POST['numbers'];
-		$pass = $_POST['pass'];
-		$confirm = $_POST['confirm'];
+		$pass = md5($_POST['pass']);
+		$confirm = md5($_POST['confirm']);
 
 		if($_POST['pass'] == $_POST['confirm']){
 
